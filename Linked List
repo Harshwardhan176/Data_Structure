@@ -1,0 +1,65 @@
+class List:
+    def __init__(self,val):
+        self.val=val
+        self.next=None
+
+
+class LL:
+    def __init__(self):
+        self.head=None
+        
+    def insert(self,v):
+        temp=List(v)
+        if self.head is None:
+            self.head=temp
+        else:
+            head1=self.head
+            while head1.next:
+                head1=head1.next
+            head1.next=temp
+        
+    def print_list(self):
+        head1=self.head
+        print("")
+        while head1:
+            print(f"{head1.val}->",end=" ")
+            head1=head1.next
+    
+
+    def revers(self):
+        temp=self.head
+        l=[]
+        while temp:
+            l.append(temp.val)
+            temp=temp.next
+        temp=self.head
+        while l:
+            temp.val=l.pop()
+            temp=temp.next
+    
+    #add element after the list is created
+    def add(self,pos):
+        temp=List(7)
+        if pos==1:
+            temp.next=self.head
+            self.head=temp
+        node=self.head
+        for i in range(1,pos-1):
+            if node.next==None:
+                break
+            node=node.next
+        if node.next==None:
+            node.next=temp
+        else:
+            temp.next=node.next
+            node.next=temp
+    
+link_list=LL()
+for i in range(0,6):
+    link_list.insert(i)
+
+link_list.revers()
+print("Add Element At mid/any position")
+link_list.add(3)
+print("Print List")
+link_list.print_list()
